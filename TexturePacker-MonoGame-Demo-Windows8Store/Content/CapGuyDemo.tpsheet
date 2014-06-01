@@ -1,0 +1,39 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: CapGuyDemo.png (1024 x 2048)
+# $TexturePacker:SmartUpdate:a1fa2f004046fd9580e691133947e000:ac7608d1f04ab193bff21724566c15eb:e3a22faee007f1fda73a34184e7d7615$
+#
+
+Background;1;2;2;768;1022
+capguy/turn/0001;1;772;532;165;104
+capguy/turn/0002;1;772;532;165;104
+capguy/turn/0003;1;772;426;165;104
+capguy/turn/0004;1;772;426;165;104
+capguy/turn/0005;1;772;320;165;104
+capguy/turn/0006;1;772;320;165;104
+capguy/turn/0007;1;772;214;165;104
+capguy/turn/0008;1;772;214;165;104
+capguy/turn/0009;1;772;108;165;104
+capguy/turn/0010;1;772;108;165;104
+capguy/turn/0011;1;772;2;165;104
+capguy/turn/0012;1;772;2;165;104
+capguy/walk/0001;1;330;1026;162;94
+capguy/walk/0002;1;330;1026;162;94
+capguy/walk/0003;1;166;1026;162;94
+capguy/walk/0004;1;166;1026;162;94
+capguy/walk/0005;1;2;1026;162;94
+capguy/walk/0006;1;2;1026;162;94
+capguy/walk/0007;1;772;1022;162;94
+capguy/walk/0008;1;772;1022;162;94
+capguy/walk/0009;1;772;926;162;94
+capguy/walk/0010;1;772;926;162;94
+capguy/walk/0011;1;772;830;162;94
+capguy/walk/0012;1;772;830;162;94
+capguy/walk/0013;1;772;734;162;94
+capguy/walk/0014;1;772;734;162;94
+capguy/walk/0015;1;772;638;162;94
+capguy/walk/0016;1;772;638;162;94
