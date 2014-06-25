@@ -46,19 +46,19 @@
                     where !string.IsNullOrEmpty(row) && !row.StartsWith("#")
                     select row.Split(';'))
             {
-				if (cols.Length != 6)
+                if (cols.Length != 6)
                 {
                     throw new InvalidDataException("Incorrect format data in tpsheet data file");
                 }
 
-				var isRotated = int.Parse (cols [1]) == 1;
+                var isRotated = int.Parse (cols [1]) == 1;
                 var name = cols[0];
                 var sourceRectangle = new Rectangle(
-					int.Parse(cols[2]),
-					int.Parse(cols[3]),
-					int.Parse(cols[4]),
-					int.Parse(cols[5]));
-				var sprite = new Sprite(sourceRectangle, isRotated);
+                    int.Parse(cols[2]),
+                    int.Parse(cols[3]),
+                    int.Parse(cols[4]),
+                    int.Parse(cols[5]));
+                var sprite = new Sprite(sourceRectangle, isRotated);
 
                 spriteList.Add(name, sprite);
             }
