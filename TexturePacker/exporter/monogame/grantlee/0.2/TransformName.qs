@@ -10,11 +10,13 @@ StripPathSeparators.filterName = "stripPathSeparators";
 StripPathSeparators.isSafe = false;
 Library.addFilter("StripPathSeparators");
 
-var UpperCaseName = function(input) 
+var CreateClassName = function(input) 
 {
   var input = input.rawString();
+  input = input.replace(/@2x$/, "");
   return input.charAt(0).toUpperCase() + input.slice(1);
 }
-UpperCaseName.filterName = "upperCaseName";
-UpperCaseName.isSafe = false;
-Library.addFilter("UpperCaseName");
+CreateClassName.filterName = "createClassName";
+CreateClassName.isSafe = false;
+Library.addFilter("CreateClassName");
+

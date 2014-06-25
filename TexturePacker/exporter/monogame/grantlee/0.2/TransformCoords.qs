@@ -9,14 +9,6 @@ SetTextureHeight.filterName = "setTextureHeight";
 Library.addFilter("SetTextureHeight");
 
 
-var MirroredFrameRectY = function(sprite)
-{
-    return "" + (textureHeight - sprite.frameRect.y - sprite.frameRect.height);
-};
-MirroredFrameRectY.filterName = "MirroredFrameRectY";
-Library.addFilter("MirroredFrameRectY");
-
-
 var TrimmedPivotX = function(sprite)
 {
 	var ppX = (sprite.pivotPoint.x - sprite.sourceRect.x) / sprite.sourceRect.width;
@@ -25,10 +17,11 @@ var TrimmedPivotX = function(sprite)
 TrimmedPivotX.filterName = "TrimmedPivotX";
 Library.addFilter("TrimmedPivotX");
 
-var TrimmedMirroredPivotY = function(sprite)
+
+var TrimmedPivotY = function(sprite)
 {
 	var ppY = (sprite.pivotPoint.y  - sprite.sourceRect.y) / sprite.sourceRect.height;
-    return "" + (1 - ppY);
+    return "" + ppY;
 };
-TrimmedMirroredPivotY.filterName = "TrimmedMirroredPivotY";
-Library.addFilter("TrimmedMirroredPivotY");
+TrimmedPivotY.filterName = "TrimmedPivotY";
+Library.addFilter("TrimmedPivotY");

@@ -1,12 +1,12 @@
 <exporter version="1.0">
     <!-- identifier of the exporter -->
-    <name>unity-texture2d</name>
+    <name>mono-game</name>
 	
     <!-- display name of the exporter for the combo box -->
-    <displayName>Unity - Texture2D sprite sheet</displayName>
+    <displayName>MonoGame</displayName>
              
     <!-- description of the exporter -->
-    <description>Input format for the Unity TexturePacker Importer</description>
+    <description>Input format for the MonoGame TexturePacker Importer</description>
 
     <!-- exporter version -->
     <version>1.0</version>
@@ -26,7 +26,7 @@
             <description>Sprite sheet Data</description>
 
             <!-- name of the template file -->
-            <template>unity.tpsheet</template>
+            <template>monogame.tpsheet</template>
         </file>
         <file>
             <!-- name of this file variable -->
@@ -41,13 +41,20 @@
             <!-- description what the file contains, used in tooltips in the GUI -->
             <description>Sprite Definition Class</description>
 
+            <!-- write this file only for the first AutoSD variation -->
+            <!-- values are: all (default), first, last -->
+            <hasSeparateAutoSDFiles>first</hasSeparateAutoSDFiles>
+
+            <!-- do not write a file for each multipack variation -->
+            <hasSeparateMultiPackFiles>false</hasSeparateMultiPackFiles>
+
             <!-- name of the template file -->
             <template>monogame.cs</template>
         </file>
     </files>
 
     <!-- target framework supports trimming -->
-    <supportsTrimming>false</supportsTrimming>
+    <supportsTrimming>true</supportsTrimming>
 
     <!-- target framework supports rotated sprites -->
     <supportsRotation>true</supportsRotation>
@@ -55,7 +62,7 @@
     <!-- rotated sprites direction (cw/ccw) -->
     <rotationDirection>cw</rotationDirection>
 
-    <supportsPivotPoint>false</supportsPivotPoint>
+    <supportsPivotPoint>true</supportsPivotPoint>
 
     <supportsNPOT>true</supportsNPOT>
     
