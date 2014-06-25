@@ -23,7 +23,7 @@
 
         private SpriteRender spriteRender;
 
-        private Sprite backgroundSprite;
+        private SpriteFrame backgroundSprite;
 
         private Vector2 centreScreen;
 
@@ -33,7 +33,8 @@
         {
             this.graphics = new GraphicsDeviceManager(this);
 #if NETFX_CORE
-            this.graphics.PreferredBackBufferWidth = 1024;
+            float aspectRatio = (float)this.graphics.PreferredBackBufferWidth / this.graphics.PreferredBackBufferHeight;
+            this.graphics.PreferredBackBufferWidth = (int)(768 * aspectRatio);
             this.graphics.PreferredBackBufferHeight = 768;
 #endif
             Content.RootDirectory = "Content";
@@ -95,19 +96,18 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             this.spriteBatch.Begin();
 
             // Draw the background
-            this.spriteRender.Draw(this.spriteSheet.Texture, this.backgroundSprite, this.centreScreen);
+            this.spriteRender.Draw(this.backgroundSprite, this.centreScreen);
 
             // Draw character on screen
             this.spriteRender.Draw(
-                this.spriteSheet.Texture, 
                 this.characterAnimationManager.CurrentSprite, 
                 this.characterAnimationManager.CurrentPosition, 
-                Color.White, 
+                Color.White, 0, 1,
                 this.characterAnimationManager.CurrentSpriteEffects);
 
             this.spriteBatch.End();
@@ -119,11 +119,11 @@
         {
             #if __IOS__
             var scale = MonoTouch.UIKit.UIScreen.MainScreen.Scale;
-            var characterStartPosition = new Vector2(250 * scale, 530 * scale);
-            var characterVelocityPixelsPerSecond = 125 * (int)scale;
+            var characterStartPosition = new Vector2(350 * scale, 530 * scale);
+            var characterVelocityPixelsPerSecond = 200 * (int)scale;
             #else
-            var characterStartPosition = new Vector2(250, 530);
-            var characterVelocityPixelsPerSecond = 125;
+            var characterStartPosition = new Vector2(350, 530);
+            var characterVelocityPixelsPerSecond = 200;
             #endif
 
             var turnSprites = new [] {

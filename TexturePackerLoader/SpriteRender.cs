@@ -7,8 +7,6 @@ namespace TexturePackerLoader
 
     public class SpriteRender
     {
-        private const float AntiClockwiseNinetyDegreeRotation = (float)(-Math.PI / 2.0f);
-
         private const float ClockwiseNinetyDegreeRotation = (float)(Math.PI / 2.0f);
 
         private SpriteBatch spriteBatch;
@@ -18,16 +16,34 @@ namespace TexturePackerLoader
             this.spriteBatch = spriteBatch;
         }
 
-        // <param name="position">This should be where you want the CENTRE of the sprite image to be rendered.</param>
-        public void Draw(Texture2D texture, Sprite sprite, Vector2 position, Color? color = null, SpriteEffects spriteEffects = SpriteEffects.None) {
+        // <param name="position">This should be where you want the pivot point of the sprite image to be rendered.</param>
+        public void Draw(SpriteFrame sprite, Vector2 position, Color? color = null, float rotation = 0, float scale = 1, SpriteEffects spriteEffects = SpriteEffects.None)
+        {
+            Vector2 origin = sprite.Origin;
+            if (sprite.IsRotated)
+            {
+                rotation -= ClockwiseNinetyDegreeRotation;
+                switch (spriteEffects)
+                {
+                    case SpriteEffects.FlipHorizontally: spriteEffects = SpriteEffects.FlipVertically; break;
+                    case SpriteEffects.FlipVertically: spriteEffects = SpriteEffects.FlipHorizontally; break;
+                }
+            }
+            switch (spriteEffects)
+            {
+                case SpriteEffects.FlipHorizontally: origin.X = sprite.SourceRectangle.Width - origin.X; break;
+                case SpriteEffects.FlipVertically: origin.Y = sprite.SourceRectangle.Height - origin.Y; break;
+            }
+
             this.spriteBatch.Draw(
-                texture: texture,
+                texture: sprite.Texture,
                 position: position,
-                sourceRectangle: sprite.Rectangle,
-                origin: sprite.Origin,
+                sourceRectangle: sprite.SourceRectangle,
                 color: color,
-                effect: spriteEffects,
-                rotation: sprite.IsRotated ? (spriteEffects == SpriteEffects.None ? AntiClockwiseNinetyDegreeRotation : ClockwiseNinetyDegreeRotation) : 0f);
+                rotation: rotation,
+                origin: origin,
+                scale: new Vector2(scale, scale),
+                effect: spriteEffects);
         }
     }
 }

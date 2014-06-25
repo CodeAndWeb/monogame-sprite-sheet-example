@@ -28,6 +28,20 @@
 #endif
         }
 
+        public SpriteSheet MultiLoad(string imageResourceFormat, int numSheets)
+        {
+            SpriteSheet result = new SpriteSheet();
+            for (int i = 0; i < numSheets; i++)
+            {
+                string imageResource = string.Format(imageResourceFormat, i);
+
+                SpriteSheet tmp = Load(imageResource);
+                result.Add(tmp);
+            }
+            return result;
+        }
+
+
         public SpriteSheet Load(string imageResource)
         {
             var texture = this.contentManager.Load<Texture2D>(imageResource);
@@ -38,7 +52,7 @@
 
             var dataFileLines = this.ReadDataFile(dataFile);
 
-            var spriteList = new Dictionary<string, Sprite>();
+            var sheet = new SpriteSheet();
 
             foreach (
                 var cols in
@@ -46,7 +60,7 @@
                     where !string.IsNullOrEmpty(row) && !row.StartsWith("#")
                     select row.Split(';'))
             {
-                if (cols.Length != 6)
+                if (cols.Length != 10)
                 {
                     throw new InvalidDataException("Incorrect format data in tpsheet data file");
                 }
@@ -58,12 +72,18 @@
                     int.Parse(cols[3]),
                     int.Parse(cols[4]),
                     int.Parse(cols[5]));
-                var sprite = new Sprite(sourceRectangle, isRotated);
+                var size = new Vector2(
+                    int.Parse(cols[6]),
+                    int.Parse(cols[7]));
+                var pivotPoint = new Vector2(
+                    float.Parse(cols[8]),
+                    float.Parse(cols[9]));
+                var sprite = new SpriteFrame(texture, sourceRectangle, size, pivotPoint, isRotated);
 
-                spriteList.Add(name, sprite);
+                sheet.Add(name, sprite);
             }
 
-            return new SpriteSheet(texture, spriteList);
+            return sheet;
         }
 
 #if __IOS__

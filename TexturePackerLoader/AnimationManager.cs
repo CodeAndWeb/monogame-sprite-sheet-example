@@ -24,7 +24,7 @@
             this.currentPosition = initialPosition;
         }
 
-        public Sprite CurrentSprite { get; private set; }
+        public SpriteFrame CurrentSprite { get; private set; }
 
         public SpriteEffects CurrentSpriteEffects { get; private set; }
 
