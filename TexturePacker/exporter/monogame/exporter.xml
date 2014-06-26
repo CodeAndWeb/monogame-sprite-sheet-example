@@ -1,6 +1,6 @@
 <exporter version="1.0">
     <!-- identifier of the exporter -->
-    <name>mono-game</name>
+    <name>monogame</name>
 	
     <!-- display name of the exporter for the combo box -->
     <displayName>MonoGame</displayName>

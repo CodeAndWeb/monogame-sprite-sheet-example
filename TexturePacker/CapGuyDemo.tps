@@ -53,7 +53,7 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>mono-game</string>
+        <string>monogame</string>
         <key>textureFileName</key>
         <filename>CapGuyDemo{v}.png</filename>
         <key>flipPVR</key>
