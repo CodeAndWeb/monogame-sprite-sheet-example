@@ -1,8 +1,8 @@
 #
-# Sprite sheet data for Unity.
+# Sprite sheet data for MonoGame.
 #
-# To import these sprites into your Unity project, download "TexturePackerImporter":
-# http://www.codeandweb.com/texturepacker/unity
+# To learn how to import these sprites into your MonoGame project visit:
+# http://www.codeandweb.com/texturepacker/monogame
 #
 # Sprite sheet: {{texture.fullName}} ({{texture.size.width}} x {{texture.size.height}})
 # {{smartUpdateKey}}

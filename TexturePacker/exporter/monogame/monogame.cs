@@ -9,7 +9,7 @@
  */{% load TransformName %}
 namespace TexturePackerMonoGameDefinitions
 {
-	public class {{texture.trimmedName|createClassName}}
+	public class {{settings.tpsName}}
 	{
 {% for sprite in allSprites %}		public const string {{sprite.trimmedName|stripPathSeparators}} = "{{sprite.trimmedName}}";
 {% endfor %}	}

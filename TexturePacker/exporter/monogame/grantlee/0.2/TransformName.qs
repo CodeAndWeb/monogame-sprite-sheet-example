@@ -9,14 +9,3 @@ var StripPathSeparators = function(input)
 StripPathSeparators.filterName = "stripPathSeparators";
 StripPathSeparators.isSafe = false;
 Library.addFilter("StripPathSeparators");
-
-var CreateClassName = function(input) 
-{
-  var input = input.rawString();
-  input = input.replace(/@2x$/, "");
-  return input.charAt(0).toUpperCase() + input.slice(1);
-}
-CreateClassName.filterName = "createClassName";
-CreateClassName.isSafe = false;
-Library.addFilter("CreateClassName");
-

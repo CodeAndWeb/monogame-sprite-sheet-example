@@ -48,7 +48,7 @@
 
             var dataFile = Path.Combine(
                 this.contentManager.RootDirectory,
-                Path.ChangeExtension(imageResource, "tpsheet"));
+                Path.ChangeExtension(imageResource, "txt"));
 
             var dataFileLines = this.ReadDataFile(dataFile);
 
@@ -62,7 +62,7 @@
             {
                 if (cols.Length != 10)
                 {
-                    throw new InvalidDataException("Incorrect format data in tpsheet data file");
+                    throw new InvalidDataException("Incorrect format data in spritesheet data file");
                 }
 
                 var isRotated = int.Parse (cols [1]) == 1;

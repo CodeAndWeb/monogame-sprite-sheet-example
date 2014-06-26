@@ -20,13 +20,13 @@
             <displayName>Data file</displayName>
 
             <!-- file extension for the file -->
-            <fileExtension>tpsheet</fileExtension>
+            <fileExtension>txt</fileExtension>
 
             <!-- description what the file contains, used in tooltips in the GUI -->
             <description>Sprite sheet Data</description>
 
             <!-- name of the template file -->
-            <template>monogame.tpsheet</template>
+            <template>monogame.txt</template>
         </file>
         <file>
             <!-- name of this file variable -->

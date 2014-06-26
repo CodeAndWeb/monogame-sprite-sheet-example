@@ -131,8 +131,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="..\TexturePacker\CapGuyDemo.tpsheet">
-      <Link>Content\CapGuyDemo.tpsheet</Link>
+    <Content Include="..\TexturePacker\CapGuyDemo.txt">
+      <Link>Content\CapGuyDemo.txt</Link>
     </Content>
     <None Include="packages.config" />
     <None Include="TexturePacker-MonoGame-Demo_TemporaryKey.pfx" />
