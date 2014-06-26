@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.3.4</string>
+        <string>3.3.5b1</string>
         <key>fileName</key>
-        <string>/Users/randolph/Projects/Development/GitHub/TexturePacker-MonoGame-Demo/TexturePacker/CapGuyDemo.tps</string>
+        <string>/Users/joachim/Programming/TexturePacker-MonoGame-Demo/TexturePacker/CapGuyDemo.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -153,7 +153,7 @@
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>CapGuyDemo{v}.tpsheet</filename>
+                <filename>CapGuyDemo{v}.txt</filename>
             </struct>
             <key>header</key>
             <struct type="DataFile">
