@@ -94,10 +94,18 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Content\CapGuyDemo.png" />
-    <BundleResource Include="Content\CapGuyDemo.tpsheet" />
-    <BundleResource Include="Content\CapGuyDemo%402x.png" />
-    <BundleResource Include="Content\CapGuyDemo%402x.tpsheet" />
+    <BundleResource Include="..\TexturePacker\CapGuyDemo.png">
+      <Link>Content\CapGuyDemo.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\TexturePacker\CapGuyDemo%402x.png">
+      <Link>Content\CapGuyDemo%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\TexturePacker\CapGuyDemo.txt">
+      <Link>Content\CapGuyDemo.txt</Link>
+    </BundleResource>
+    <BundleResource Include="..\TexturePacker\CapGuyDemo%402x.txt">
+      <Link>Content\CapGuyDemo%402x.txt</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -107,9 +115,6 @@
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="..\TexturePackerLoader\Sprite.cs">
-      <Link>TexturePackerLoader\Sprite.cs</Link>
-    </Compile>
     <Compile Include="..\TexturePackerLoader\SpriteSheet.cs">
       <Link>TexturePackerLoader\SpriteSheet.cs</Link>
     </Compile>
@@ -119,9 +124,6 @@
     <Compile Include="..\TexturePacker-MonoGame-Demo-Common\DemoGame.cs">
       <Link>CommonGameComponents\DemoGame.cs</Link>
     </Compile>
-    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\SpriteSheet.cs">
-      <Link>CommonGameComponents\SpriteSheet.cs</Link>
-    </Compile>
     <Compile Include="..\TexturePackerLoader\SpriteRender.cs">
       <Link>TexturePackerLoader\SpriteRender.cs</Link>
     </Compile>
@@ -130,6 +132,12 @@
     </Compile>
     <Compile Include="..\TexturePackerLoader\AnimationManager.cs">
       <Link>TexturePackerLoader\AnimationManager.cs</Link>
+    </Compile>
+    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\SpriteNames.cs">
+      <Link>CommonGameComponents\SpriteNames.cs</Link>
+    </Compile>
+    <Compile Include="..\TexturePackerLoader\SpriteFrame.cs">
+      <Link>TexturePackerLoader\SpriteFrame.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
