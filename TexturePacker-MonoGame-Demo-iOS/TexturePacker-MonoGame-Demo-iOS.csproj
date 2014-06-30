@@ -127,17 +127,17 @@
     <Compile Include="..\TexturePackerLoader\SpriteRender.cs">
       <Link>TexturePackerLoader\SpriteRender.cs</Link>
     </Compile>
-    <Compile Include="..\TexturePackerLoader\Animation.cs">
-      <Link>TexturePackerLoader\Animation.cs</Link>
-    </Compile>
-    <Compile Include="..\TexturePackerLoader\AnimationManager.cs">
-      <Link>TexturePackerLoader\AnimationManager.cs</Link>
-    </Compile>
     <Compile Include="..\TexturePacker-MonoGame-Demo-Common\SpriteNames.cs">
       <Link>CommonGameComponents\SpriteNames.cs</Link>
     </Compile>
     <Compile Include="..\TexturePackerLoader\SpriteFrame.cs">
       <Link>TexturePackerLoader\SpriteFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\Animation.cs">
+      <Link>CommonGameComponents\Animation.cs</Link>
+    </Compile>
+    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\AnimationManager.cs">
+      <Link>CommonGameComponents\AnimationManager.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

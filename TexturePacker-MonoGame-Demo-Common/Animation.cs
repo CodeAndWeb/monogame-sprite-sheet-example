@@ -1,4 +1,4 @@
-﻿namespace TexturePackerLoader
+﻿namespace TexturePackerMonoGameDemoCommon
 {
     using System;
 
