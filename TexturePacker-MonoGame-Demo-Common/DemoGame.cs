@@ -15,25 +15,26 @@
     {
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(1f/30f);
 
-		private GraphicsDeviceManager graphics;
+        private GraphicsDeviceManager graphics;
 
         private SpriteBatch spriteBatch;
 
         private SpriteSheet spriteSheet;
 
-		private SpriteRender spriteRender;
+        private SpriteRender spriteRender;
 
-        private Sprite backgroundSprite;
+        private SpriteFrame backgroundSprite;
 
-		private Vector2 centreScreen;
+        private Vector2 centreScreen;
 
-		private AnimationManager characterAnimationManager;
+        private AnimationManager characterAnimationManager;
 
         public DemoGame()
         {
-			this.graphics = new GraphicsDeviceManager(this);
+            this.graphics = new GraphicsDeviceManager(this);
 #if NETFX_CORE
-            this.graphics.PreferredBackBufferWidth = 1024;
+            float aspectRatio = (float)this.graphics.PreferredBackBufferWidth / this.graphics.PreferredBackBufferHeight;
+            this.graphics.PreferredBackBufferWidth = (int)(768 * aspectRatio);
             this.graphics.PreferredBackBufferHeight = 768;
 #endif
             Content.RootDirectory = "Content";
@@ -58,14 +59,14 @@
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
-			this.spriteRender = new SpriteRender(this.spriteBatch);
+            this.spriteRender = new SpriteRender(this.spriteBatch);
 
             var spriteSheetLoader = new SpriteSheetLoader(this.Content);
-			this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
-			this.backgroundSprite = this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Background);
-			this.centreScreen = new Vector2 (this.GraphicsDevice.Viewport.Width / 2, this.GraphicsDevice.Viewport.Height / 2);
+            this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
+            this.backgroundSprite = this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Background);
+            this.centreScreen = new Vector2 (this.GraphicsDevice.Viewport.Width / 2, this.GraphicsDevice.Viewport.Height / 2);
 
-			this.InitialiseAnimationManager();
+            this.InitialiseAnimationManager();
         }
 
         /// <summary>
@@ -84,7 +85,7 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-			this.characterAnimationManager.Update(gameTime);
+            this.characterAnimationManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -95,20 +96,19 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             this.spriteBatch.Begin();
 
-			// Draw the background
-			this.spriteRender.Draw(this.spriteSheet.Texture, this.backgroundSprite, this.centreScreen);
+            // Draw the background
+            this.spriteRender.Draw(this.backgroundSprite, this.centreScreen);
 
-			// Draw character on screen
-			this.spriteRender.Draw(
-				this.spriteSheet.Texture, 
-				this.characterAnimationManager.CurrentSprite, 
-				this.characterAnimationManager.CurrentPosition, 
-				Color.White, 
-				this.characterAnimationManager.CurrentSpriteEffects);
+            // Draw character on screen
+            this.spriteRender.Draw(
+                this.characterAnimationManager.CurrentSprite, 
+                this.characterAnimationManager.CurrentPosition, 
+                Color.White, 0, 1,
+                this.characterAnimationManager.CurrentSpriteEffects);
 
             this.spriteBatch.End();
 
@@ -117,55 +117,55 @@
 
         private void InitialiseAnimationManager()
         {
-			#if __IOS__
-			var scale = MonoTouch.UIKit.UIScreen.MainScreen.Scale;
-			var characterStartPosition = new Vector2(250 * scale, 530 * scale);
-			var characterVelocityPixelsPerSecond = 125 * (int)scale;
-			#else
-			var characterStartPosition = new Vector2(250, 530);
-			var characterVelocityPixelsPerSecond = 125;
-			#endif
+            #if __IOS__
+            var scale = MonoTouch.UIKit.UIScreen.MainScreen.Scale;
+            var characterStartPosition = new Vector2(350 * scale, 530 * scale);
+            var characterVelocityPixelsPerSecond = 200 * (int)scale;
+            #else
+            var characterStartPosition = new Vector2(350, 530);
+            var characterVelocityPixelsPerSecond = 200;
+            #endif
 
-			var turnSprites = new [] {
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0001,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0003,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0004,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0005,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0006,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0007,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0008,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0009,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0010,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0011,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0012
-			};
+            var turnSprites = new [] {
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0001,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0003,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0004,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0005,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0006,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0007,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0008,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0009,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0010,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0011,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0012
+            };
 
             var walkSprites = new [] {
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0001,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0002,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0003,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0004,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0005,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0006,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0007,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0008,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0009,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0010,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0011,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0012,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0013,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0014,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0015,
-				TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0016,
-			};
-				
-			var animationWalkRight = new Animation(new Vector2(characterVelocityPixelsPerSecond, 0), this.timePerFrame, SpriteEffects.None, walkSprites);
-			var animationWalkLeft = new Animation(new Vector2(-characterVelocityPixelsPerSecond, 0), this.timePerFrame, SpriteEffects.FlipHorizontally, walkSprites);
-			var animationTurnRightToLeft = new Animation(Vector2.Zero, this.timePerFrame, SpriteEffects.None, turnSprites);
-			var animationTurnLeftToRight = new Animation(Vector2.Zero, this.timePerFrame, SpriteEffects.FlipHorizontally, turnSprites);
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0001,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0002,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0003,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0004,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0005,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0006,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0007,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0008,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0009,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0010,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0011,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0012,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0013,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0014,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0015,
+                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0016,
+            };
+                
+            var animationWalkRight = new Animation(new Vector2(characterVelocityPixelsPerSecond, 0), this.timePerFrame, SpriteEffects.None, walkSprites);
+            var animationWalkLeft = new Animation(new Vector2(-characterVelocityPixelsPerSecond, 0), this.timePerFrame, SpriteEffects.FlipHorizontally, walkSprites);
+            var animationTurnRightToLeft = new Animation(Vector2.Zero, this.timePerFrame, SpriteEffects.None, turnSprites);
+            var animationTurnLeftToRight = new Animation(Vector2.Zero, this.timePerFrame, SpriteEffects.FlipHorizontally, turnSprites);
 
-			var animations = new[] 
+            var animations = new[] 
             { 
                animationWalkRight, animationWalkRight, animationWalkRight, animationWalkRight, animationWalkRight, animationWalkRight,
                animationTurnRightToLeft,
@@ -173,7 +173,7 @@
                animationTurnLeftToRight
             };
 
-			this.characterAnimationManager = new AnimationManager (this.spriteSheet, characterStartPosition, animations);
+            this.characterAnimationManager = new AnimationManager (this.spriteSheet, characterStartPosition, animations);
         }
     }
 }

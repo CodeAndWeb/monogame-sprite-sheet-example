@@ -103,8 +103,8 @@
     <Compile Include="..\TexturePacker-MonoGame-Demo-Common\DemoGame.cs">
       <Link>CommonGameComponents\DemoGame.cs</Link>
     </Compile>
-    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\SpriteSheet.cs">
-      <Link>CommonGameComponents\SpriteSheet.cs</Link>
+    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\SpriteNames.cs">
+      <Link>CommonGameComponents\SpriteNames.cs</Link>
     </Compile>
     <Compile Include="..\TexturePackerLoader\Animation.cs">
       <Link>TexturePackerLoader\Animation.cs</Link>
@@ -112,8 +112,8 @@
     <Compile Include="..\TexturePackerLoader\AnimationManager.cs">
       <Link>TexturePackerLoader\AnimationManager.cs</Link>
     </Compile>
-    <Compile Include="..\TexturePackerLoader\Sprite.cs">
-      <Link>TexturePackerLoader\Sprite.cs</Link>
+    <Compile Include="..\TexturePackerLoader\SpriteFrame.cs">
+      <Link>TexturePackerLoader\SpriteFrame.cs</Link>
     </Compile>
     <Compile Include="..\TexturePackerLoader\SpriteRender.cs">
       <Link>TexturePackerLoader\SpriteRender.cs</Link>
@@ -131,16 +131,20 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="Content\CapGuyDemo.tpsheet" />
+    <Content Include="..\TexturePacker\CapGuyDemo.txt">
+      <Link>Content\CapGuyDemo.txt</Link>
+    </Content>
     <None Include="packages.config" />
     <None Include="TexturePacker-MonoGame-Demo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\TexturePacker\CapGuyDemo.png">
+      <Link>Content\CapGuyDemo.png</Link>
+    </Content>
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Content\CapGuyDemo.png" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

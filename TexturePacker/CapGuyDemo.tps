@@ -4,14 +4,31 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.3.4</string>
+        <string>3.3.5b1</string>
         <key>fileName</key>
-        <string>/Users/randolph/Projects/Development/GitHub/TexturePacker-MonoGame-Demo/TexturePacker/CapGuyDemo.tps</string>
+        <string>/Users/joachim/Programming/TexturePacker-MonoGame-Demo/TexturePacker/CapGuyDemo.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
                 <key>scale</key>
                 <double>1</double>
+                <key>extension</key>
+                <string>@2x</string>
+                <key>spriteFilter</key>
+                <string></string>
+                <key>acceptFractionalValues</key>
+                <false/>
+                <key>maxTextureSize</key>
+                <QSize>
+                    <key>width</key>
+                    <int>-1</int>
+                    <key>height</key>
+                    <int>-1</int>
+                </QSize>
+            </struct>
+            <struct type="AutoSDSettings">
+                <key>scale</key>
+                <double>0.5</double>
                 <key>extension</key>
                 <string></string>
                 <key>spriteFilter</key>
@@ -36,9 +53,9 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>unity-texture2d</string>
+        <string>monogame</string>
         <key>textureFileName</key>
-        <filename>CapGuyDemo.png</filename>
+        <filename>CapGuyDemo{v}.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -92,7 +109,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -131,34 +148,14 @@
             <key>classfile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../TexturePacker-MonoGame-Demo-Common/SpriteSheet.cs</filename>
-            </struct>
-            <key>data</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename>demo.txt</filename>
+                <filename>../TexturePacker-MonoGame-Demo-Common/SpriteNames.cs</filename>
             </struct>
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>CapGuyDemo.tpsheet</filename>
+                <filename>CapGuyDemo{v}.txt</filename>
             </struct>
             <key>header</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
-            </struct>
-            <key>java</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename>../../../../../../../../Users/randolph/Projects/Spine/crab.atlas.java</filename>
-            </struct>
-            <key>plaintext</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
-            </struct>
-            <key>rocketCSS</key>
             <struct type="DataFile">
                 <key>name</key>
                 <filename></filename>
@@ -184,7 +181,7 @@
         <key>globalSpriteSettings</key>
         <struct type="SpriteSettings">
             <key>scale</key>
-            <double>0.5</double>
+            <double>1</double>
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>innerPadding</key>
@@ -194,11 +191,11 @@
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">None</enum>
+            <enum type="SpriteSettings::TrimMode">Trim</enum>
             <key>heuristicMask</key>
             <false/>
             <key>pivotPoint</key>
-            <enum type="SpriteSettings::PivotPoint">TopLeft</enum>
+            <enum type="SpriteSettings::PivotPoint">Center</enum>
         </struct>
         <key>fileList</key>
         <array>
