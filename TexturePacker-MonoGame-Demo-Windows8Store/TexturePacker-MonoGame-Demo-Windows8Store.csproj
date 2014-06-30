@@ -100,17 +100,17 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\Animation.cs">
+      <Link>CommonGameComponents\Animation.cs</Link>
+    </Compile>
+    <Compile Include="..\TexturePacker-MonoGame-Demo-Common\AnimationManager.cs">
+      <Link>CommonGameComponents\AnimationManager.cs</Link>
+    </Compile>
     <Compile Include="..\TexturePacker-MonoGame-Demo-Common\DemoGame.cs">
       <Link>CommonGameComponents\DemoGame.cs</Link>
     </Compile>
     <Compile Include="..\TexturePacker-MonoGame-Demo-Common\SpriteNames.cs">
       <Link>CommonGameComponents\SpriteNames.cs</Link>
-    </Compile>
-    <Compile Include="..\TexturePackerLoader\Animation.cs">
-      <Link>TexturePackerLoader\Animation.cs</Link>
-    </Compile>
-    <Compile Include="..\TexturePackerLoader\AnimationManager.cs">
-      <Link>TexturePackerLoader\AnimationManager.cs</Link>
     </Compile>
     <Compile Include="..\TexturePackerLoader\SpriteFrame.cs">
       <Link>TexturePackerLoader\SpriteFrame.cs</Link>
