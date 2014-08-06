@@ -112,20 +112,12 @@
     <Compile Include="..\TexturePacker-MonoGame-Demo-Common\SpriteNames.cs">
       <Link>CommonGameComponents\SpriteNames.cs</Link>
     </Compile>
-    <Compile Include="..\TexturePackerLoader\SpriteFrame.cs">
-      <Link>TexturePackerLoader\SpriteFrame.cs</Link>
-    </Compile>
-    <Compile Include="..\TexturePackerLoader\SpriteRender.cs">
-      <Link>TexturePackerLoader\SpriteRender.cs</Link>
-    </Compile>
-    <Compile Include="..\TexturePackerLoader\SpriteSheet.cs">
-      <Link>TexturePackerLoader\SpriteSheet.cs</Link>
-    </Compile>
-    <Compile Include="..\TexturePackerLoader\SpriteSheetLoader.cs">
-      <Link>TexturePackerLoader\SpriteSheetLoader.cs</Link>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TexturePackerLoader\SpriteFrame.cs" />
+    <Compile Include="TexturePackerLoader\SpriteRender.cs" />
+    <Compile Include="TexturePackerLoader\SpriteSheet.cs" />
+    <Compile Include="TexturePackerLoader\SpriteSheetLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
