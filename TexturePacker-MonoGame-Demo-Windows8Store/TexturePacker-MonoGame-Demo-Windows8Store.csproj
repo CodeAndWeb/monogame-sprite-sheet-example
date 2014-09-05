@@ -126,7 +126,9 @@
     <Content Include="..\TexturePacker\CapGuyDemo.txt">
       <Link>Content\CapGuyDemo.txt</Link>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="TexturePacker-MonoGame-Demo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

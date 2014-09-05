@@ -122,6 +122,15 @@
 
             return fileContents.ToArray();
         }
+#elif __ANDROID__
+		private string[] ReadDataFile(string dataFile) {
+			using(var ms = new MemoryStream()) {
+				using (var s = Game.Activity.Assets.Open (dataFile)) {
+					s.CopyTo (ms);
+					return System.Text.Encoding.Default.GetString (ms.ToArray()).Split (new char[] { '\n'});
+				}
+			}
+		}
 #else
         private string[] ReadDataFile(string dataFile) 
         {
