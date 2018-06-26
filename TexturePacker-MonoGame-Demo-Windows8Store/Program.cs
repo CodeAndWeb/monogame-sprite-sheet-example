@@ -1,9 +1,8 @@
 ﻿using System;
+using TexturePackerMonoGameDemoCommon;
 
 namespace TexturePacker_MonoGame_Demo
 {
-    using TexturePackerMonoGameDemoCommon;
-
     /// <summary>
     /// The main class.
     /// </summary>
@@ -12,10 +11,11 @@ namespace TexturePacker_MonoGame_Demo
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        [STAThread]
         static void Main()
         {
-            var factory = new MonoGame.Framework.GameFrameworkViewSource<DemoGame>();
-            Windows.ApplicationModel.Core.CoreApplication.Run(factory);
+            using (var game = new DemoGame())
+                game.Run();
         }
     }
 }
