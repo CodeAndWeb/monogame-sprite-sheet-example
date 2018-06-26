@@ -1,42 +1,29 @@
-﻿namespace TexturePackerMonoGameDemoCommon
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using TexturePackerLoader;
+
+namespace TexturePackerMonoGameDemoCommon
 {
-    using System;
-    using System.Collections.Generic;
-
-    using TexturePackerLoader;
-
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-
     /// <summary>
-    /// This is the main type for your game
+    /// This is the main type for your game.
     /// </summary>
     public class DemoGame : Game
     {
-        private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(1f/30f);
+        private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(1f / 30f);
 
         private GraphicsDeviceManager graphics;
-
         private SpriteBatch spriteBatch;
 
         private SpriteSheet spriteSheet;
-
         private SpriteRender spriteRender;
-
         private SpriteFrame backgroundSprite;
-
         private Vector2 centreScreen;
-
         private AnimationManager characterAnimationManager;
 
         public DemoGame()
         {
-            this.graphics = new GraphicsDeviceManager(this);
-#if NETFX_CORE
-            float aspectRatio = (float)this.graphics.PreferredBackBufferWidth / this.graphics.PreferredBackBufferHeight;
-            this.graphics.PreferredBackBufferWidth = (int)(768 * aspectRatio);
-            this.graphics.PreferredBackBufferHeight = 768;
-#endif
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -58,20 +45,20 @@
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            this.spriteBatch = new SpriteBatch(GraphicsDevice);
-            this.spriteRender = new SpriteRender(this.spriteBatch);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteRender = new SpriteRender(spriteBatch);
 
-            var spriteSheetLoader = new SpriteSheetLoader(this.Content);
-            this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
-            this.backgroundSprite = this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Background);
-            this.centreScreen = new Vector2 (this.GraphicsDevice.Viewport.Width / 2, this.GraphicsDevice.Viewport.Height / 2);
+            var spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
+            spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
+            backgroundSprite = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Background);
+            centreScreen = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
 
-            this.InitialiseAnimationManager();
+            InitialiseAnimationManager();
         }
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
+        /// game-specific content.
         /// </summary>
         protected override void UnloadContent()
         {
@@ -85,7 +72,7 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            this.characterAnimationManager.Update(gameTime);
+            characterAnimationManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -98,35 +85,29 @@
         {
             GraphicsDevice.Clear(Color.Black);
 
-            this.spriteBatch.Begin();
+            spriteBatch.Begin();
 
             // Draw the background
-            this.spriteRender.Draw(this.backgroundSprite, this.centreScreen);
+            spriteRender.Draw(backgroundSprite, centreScreen);
 
             // Draw character on screen
-            this.spriteRender.Draw(
-                this.characterAnimationManager.CurrentSprite, 
-                this.characterAnimationManager.CurrentPosition, 
+            spriteRender.Draw(
+                characterAnimationManager.CurrentSprite,
+                characterAnimationManager.CurrentPosition,
                 Color.White, 0, 1,
-                this.characterAnimationManager.CurrentSpriteEffects);
+                characterAnimationManager.CurrentSpriteEffects);
 
-            this.spriteBatch.End();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
         private void InitialiseAnimationManager()
         {
-            #if __IOS__
-            var scale = MonoTouch.UIKit.UIScreen.MainScreen.Scale;
-            var characterStartPosition = new Vector2(350 * scale, 530 * scale);
-            var characterVelocityPixelsPerSecond = 200 * (int)scale;
-            #else
-            var characterStartPosition = new Vector2(350, 530);
-            var characterVelocityPixelsPerSecond = 200;
-            #endif
+            var characterStartPosition = new Vector2(GraphicsDevice.Viewport.Width / 10, GraphicsDevice.Viewport.Height * 0.8f);
+            var characterVelocityPixelsPerSecond = GraphicsDevice.Viewport.Width / 4;
 
-            var turnSprites = new [] {
+            var turnSprites = new[] {
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0001,
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002,
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0003,
@@ -141,7 +122,7 @@
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0012
             };
 
-            var walkSprites = new [] {
+            var walkSprites = new[] {
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0001,
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0002,
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0003,
@@ -159,21 +140,21 @@
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0015,
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_walk_0016,
             };
-                
-            var animationWalkRight = new Animation(new Vector2(characterVelocityPixelsPerSecond, 0), this.timePerFrame, SpriteEffects.None, walkSprites);
-            var animationWalkLeft = new Animation(new Vector2(-characterVelocityPixelsPerSecond, 0), this.timePerFrame, SpriteEffects.FlipHorizontally, walkSprites);
-            var animationTurnRightToLeft = new Animation(Vector2.Zero, this.timePerFrame, SpriteEffects.None, turnSprites);
-            var animationTurnLeftToRight = new Animation(Vector2.Zero, this.timePerFrame, SpriteEffects.FlipHorizontally, turnSprites);
 
-            var animations = new[] 
-            { 
+            var animationWalkRight = new Animation(new Vector2(characterVelocityPixelsPerSecond, 0), timePerFrame, SpriteEffects.None, walkSprites);
+            var animationWalkLeft = new Animation(new Vector2(-characterVelocityPixelsPerSecond, 0), timePerFrame, SpriteEffects.FlipHorizontally, walkSprites);
+            var animationTurnRightToLeft = new Animation(Vector2.Zero, timePerFrame, SpriteEffects.None, turnSprites);
+            var animationTurnLeftToRight = new Animation(Vector2.Zero, timePerFrame, SpriteEffects.FlipHorizontally, turnSprites);
+
+            var animations = new[]
+            {
                animationWalkRight, animationWalkRight, animationWalkRight, animationWalkRight, animationWalkRight, animationWalkRight,
                animationTurnRightToLeft,
-               animationWalkLeft, animationWalkLeft, animationWalkLeft, animationWalkLeft, animationWalkLeft, animationWalkLeft, 
+               animationWalkLeft, animationWalkLeft, animationWalkLeft, animationWalkLeft, animationWalkLeft, animationWalkLeft,
                animationTurnLeftToRight
             };
 
-            this.characterAnimationManager = new AnimationManager (this.spriteSheet, characterStartPosition, animations);
+            characterAnimationManager = new AnimationManager(spriteSheet, characterStartPosition, animations);
         }
     }
 }

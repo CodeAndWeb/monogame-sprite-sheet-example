@@ -35,7 +35,7 @@ namespace TexturePackerLoader
                 case SpriteEffects.FlipVertically: origin.Y = sprite.SourceRectangle.Height - origin.Y; break;
             }
 
-            this.spriteBatch.Draw(
+            spriteBatch.Draw(
                 texture: sprite.Texture,
                 position: position,
                 sourceRectangle: sprite.SourceRectangle,
@@ -43,7 +43,9 @@ namespace TexturePackerLoader
                 rotation: rotation,
                 origin: origin,
                 scale: new Vector2(scale, scale),
-                effect: spriteEffects);
+                effects: spriteEffects,
+                layerDepth: 0.0f
+            );
         }
     }
 }
