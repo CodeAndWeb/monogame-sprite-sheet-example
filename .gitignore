@@ -43,3 +43,4 @@ src/[Ww]eb/styling/.sass-cache
 src/packages/*
 !src/packages/repositories.config
 
+.vs/
