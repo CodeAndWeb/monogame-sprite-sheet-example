@@ -2,11 +2,9 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>3</int>
+        <int>4</int>
         <key>texturePackerVersion</key>
-        <string>3.3.5b1</string>
-        <key>fileName</key>
-        <string>/Users/joachim/Programming/TexturePacker-MonoGame-Demo/TexturePacker/CapGuyDemo.tps</string>
+        <string>4.8.1</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -46,8 +44,6 @@
         </array>
         <key>allowRotation</key>
         <true/>
-        <key>premultiplyAlpha</key>
-        <false/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
@@ -55,11 +51,29 @@
         <key>dataFormat</key>
         <string>monogame</string>
         <key>textureFileName</key>
-        <filename>CapGuyDemo{v}.png</filename>
+        <filename>../Content/CapGuyDemo{v}.png</filename>
         <key>flipPVR</key>
         <false/>
+        <key>pvrCompressionQuality</key>
+        <enum type="SettingsBase::PvrCompressionQuality">PVR_QUALITY_NORMAL</enum>
+        <key>atfCompressData</key>
+        <false/>
+        <key>mipMapMinSize</key>
+        <uint>32768</uint>
+        <key>etc1CompressionQuality</key>
+        <enum type="SettingsBase::Etc1CompressionQuality">ETC1_QUALITY_LOW_PERCEPTUAL</enum>
+        <key>etc2CompressionQuality</key>
+        <enum type="SettingsBase::Etc2CompressionQuality">ETC2_QUALITY_LOW_PERCEPTUAL</enum>
+        <key>dxtCompressionMode</key>
+        <enum type="SettingsBase::DxtCompressionMode">DXT_PERCEPTUAL</enum>
+        <key>jxrColorFormat</key>
+        <enum type="SettingsBase::JpegXrColorMode">JXR_YUV444</enum>
+        <key>jxrTrimFlexBits</key>
+        <uint>0</uint>
+        <key>jxrCompressionLevel</key>
+        <uint>0</uint>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -77,10 +91,12 @@
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
-        <uint>0</uint>
+        <uint>1</uint>
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
+        <string></string>
+        <key>atfFormats</key>
         <string></string>
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
@@ -89,9 +105,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>4096</int>
+            <int>2048</int>
             <key>height</key>
-            <int>4096</int>
+            <int>2048</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -100,8 +116,6 @@
             <key>height</key>
             <int>-1</int>
         </QSize>
-        <key>reduceBorderArtifacts</key>
-        <true/>
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
@@ -111,8 +125,6 @@
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
-            <false/>
-            <key>forceWordAligned</key>
             <false/>
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
@@ -126,34 +138,23 @@
                 <key>order</key>
                 <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
             </struct>
-        </struct>
-        <key>andEngine</key>
-        <struct type="AndEngine">
-            <key>minFilter</key>
-            <enum type="AndEngine::MinFilter">Linear</enum>
-            <key>packageName</key>
-            <string>Texture</string>
-            <key>wrap</key>
-            <struct type="AndEngineWrap">
-                <key>s</key>
-                <enum type="AndEngineWrap::Wrap">Clamp</enum>
-                <key>t</key>
-                <enum type="AndEngineWrap::Wrap">Clamp</enum>
+            <key>polygon</key>
+            <struct type="AlgorithmPolygonSettings">
+                <key>alignToGrid</key>
+                <uint>1</uint>
             </struct>
-            <key>magFilter</key>
-            <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileNames</key>
         <map type="GFileNameMap">
             <key>classfile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../TexturePacker-MonoGame-Demo-Common/SpriteNames.cs</filename>
+                <filename>../DemoGame/SpriteNames.cs</filename>
             </struct>
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>CapGuyDemo{v}.txt</filename>
+                <filename>../Content/CapGuyDemo{v}.txt</filename>
             </struct>
             <key>header</key>
             <struct type="DataFile">
@@ -167,6 +168,8 @@
         <false/>
         <key>outputFormat</key>
         <enum type="SettingsBase::OutputFormat">RGBA8888</enum>
+        <key>alphaHandling</key>
+        <enum type="SettingsBase::AlphaHandling">ReduceBorderArtifacts</enum>
         <key>contentProtection</key>
         <struct type="ContentProtection">
             <key>key</key>
@@ -176,7 +179,9 @@
         <true/>
         <key>trimSpriteNames</key>
         <false/>
-        <key>cleanTransparentPixels</key>
+        <key>prependSmartFolderName</key>
+        <false/>
+        <key>autodetectAnimations</key>
         <true/>
         <key>globalSpriteSettings</key>
         <struct type="SpriteSettings">
@@ -184,19 +189,91 @@
             <double>1</double>
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
-            <key>innerPadding</key>
-            <uint>0</uint>
             <key>extrude</key>
             <uint>0</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
+            <key>trimMargin</key>
+            <uint>1</uint>
             <key>trimMode</key>
             <enum type="SpriteSettings::TrimMode">Trim</enum>
+            <key>tracerTolerance</key>
+            <int>200</int>
             <key>heuristicMask</key>
             <false/>
-            <key>pivotPoint</key>
-            <enum type="SpriteSettings::PivotPoint">Center</enum>
+            <key>defaultPivotPoint</key>
+            <point_f>0.5,0.5</point_f>
+            <key>writePivotPoints</key>
+            <false/>
         </struct>
+        <key>individualSpriteSettings</key>
+        <map type="IndividualSpriteSettingsMap">
+            <key type="filename">sprites/Background.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>511,384,1022,768</rect>
+                <key>scale9Paddings</key>
+                <rect>511,384,1022,768</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">sprites/capguy/turn/0001.png</key>
+            <key type="filename">sprites/capguy/turn/0002.png</key>
+            <key type="filename">sprites/capguy/turn/0003.png</key>
+            <key type="filename">sprites/capguy/turn/0004.png</key>
+            <key type="filename">sprites/capguy/turn/0005.png</key>
+            <key type="filename">sprites/capguy/turn/0006.png</key>
+            <key type="filename">sprites/capguy/turn/0007.png</key>
+            <key type="filename">sprites/capguy/turn/0008.png</key>
+            <key type="filename">sprites/capguy/turn/0009.png</key>
+            <key type="filename">sprites/capguy/turn/0010.png</key>
+            <key type="filename">sprites/capguy/turn/0011.png</key>
+            <key type="filename">sprites/capguy/turn/0012.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>52,82,103,165</rect>
+                <key>scale9Paddings</key>
+                <rect>52,82,103,165</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">sprites/capguy/walk/0001.png</key>
+            <key type="filename">sprites/capguy/walk/0002.png</key>
+            <key type="filename">sprites/capguy/walk/0003.png</key>
+            <key type="filename">sprites/capguy/walk/0004.png</key>
+            <key type="filename">sprites/capguy/walk/0005.png</key>
+            <key type="filename">sprites/capguy/walk/0006.png</key>
+            <key type="filename">sprites/capguy/walk/0007.png</key>
+            <key type="filename">sprites/capguy/walk/0008.png</key>
+            <key type="filename">sprites/capguy/walk/0009.png</key>
+            <key type="filename">sprites/capguy/walk/0010.png</key>
+            <key type="filename">sprites/capguy/walk/0011.png</key>
+            <key type="filename">sprites/capguy/walk/0012.png</key>
+            <key type="filename">sprites/capguy/walk/0013.png</key>
+            <key type="filename">sprites/capguy/walk/0014.png</key>
+            <key type="filename">sprites/capguy/walk/0015.png</key>
+            <key type="filename">sprites/capguy/walk/0016.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>47,81,93,162</rect>
+                <key>scale9Paddings</key>
+                <rect>47,81,93,162</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+        </map>
         <key>fileList</key>
         <array>
             <filename>sprites</filename>
@@ -211,5 +288,17 @@
         <uint>1</uint>
         <key>commonDivisorY</key>
         <uint>1</uint>
+        <key>packNormalMaps</key>
+        <false/>
+        <key>autodetectNormalMaps</key>
+        <true/>
+        <key>normalMapFilter</key>
+        <string></string>
+        <key>normalMapSuffix</key>
+        <string></string>
+        <key>normalMapSheetFileName</key>
+        <filename></filename>
+        <key>exporterProperties</key>
+        <map type="ExporterProperties"/>
     </struct>
 </data>
