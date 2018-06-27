@@ -28,7 +28,7 @@ namespace TexturePackerLoader
 
         public SpriteFrame Sprite(string sprite)
         {
-            return this.spriteList[sprite];
+            return spriteList[sprite];
         }
 
     }

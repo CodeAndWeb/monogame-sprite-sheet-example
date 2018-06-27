@@ -1,7 +1,7 @@
-Background
+﻿Background
 ==========
 
-TexturePacker (http://www.codeandweb.com) is a very easy to use application for 
+TexturePacker (https://www.codeandweb.com) is a very easy to use application for 
 creating Texture Atlases / Sprite Sheets.  The idea is that you draw the 
 individual frames of animation for your game characters as separate image files 
 and then drag and drop them into TexturePacker – whereupon you end up with a 
@@ -16,7 +16,7 @@ to then use this Nuget package in your MonoGame app in order to use the data
 files created by TexturePacker to create your animations with just a few lines 
 of code.
 
-See this tutorial for an example of how to use this Nuget with either Xamarin 
-Studio (targetting iOS) or Visual Studio (targetting Windows 8 store apps)....
+See this tutorial for an example of how to use this Nuget with Visual Studio
+(on Windows or MacOS) to build a cross-plattform desktop application:
 
-http://randolphburt.co.uk/2014/08/08/animation-made-easy-in-monogame-with-texturepacker
+https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-and-animations-with-monogame

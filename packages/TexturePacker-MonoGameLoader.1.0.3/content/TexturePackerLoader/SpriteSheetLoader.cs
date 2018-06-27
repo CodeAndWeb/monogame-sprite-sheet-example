@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
 #if NETFX_CORE
@@ -14,14 +15,16 @@
     public class SpriteSheetLoader
     {
         private readonly ContentManager contentManager;
+        private readonly GraphicsDevice graphicsDevice;
 
 #if __IOS__
         private readonly bool supportRetina;
 #endif
 
-        public SpriteSheetLoader(ContentManager contentManager)
+        public SpriteSheetLoader(ContentManager contentManager, GraphicsDevice graphicsDevice)
         {
             this.contentManager = contentManager;
+            this.graphicsDevice = graphicsDevice;
 
 #if __IOS__
             this.supportRetina = MonoTouch.UIKit.UIScreen.MainScreen.Scale == 2.0f;
@@ -44,13 +47,15 @@
 
         public SpriteSheet Load(string imageResource)
         {
-            var texture = this.contentManager.Load<Texture2D>(imageResource);
+            var imageFile = Path.Combine(contentManager.RootDirectory, imageResource);
+            var dataFile = Path.ChangeExtension(imageFile, "txt");
 
-            var dataFile = Path.Combine(
-                this.contentManager.RootDirectory,
-                Path.ChangeExtension(imageResource, "txt"));
+            FileStream fileStream = new FileStream(imageFile, FileMode.Open);
+            var texture = Texture2D.FromStream(graphicsDevice, fileStream);
+            fileStream.Dispose();
 
-            var dataFileLines = this.ReadDataFile(dataFile);
+
+            var dataFileLines = ReadDataFile(dataFile);
 
             var sheet = new SpriteSheet();
 
@@ -76,8 +81,8 @@
                     int.Parse(cols[6]),
                     int.Parse(cols[7]));
                 var pivotPoint = new Vector2(
-                    float.Parse(cols[8]),
-                    float.Parse(cols[9]));
+                    float.Parse(cols[8], CultureInfo.InvariantCulture),
+                    float.Parse(cols[9], CultureInfo.InvariantCulture));
                 var sprite = new SpriteFrame(texture, sourceRectangle, size, pivotPoint, isRotated);
 
                 sheet.Add(name, sprite);
@@ -91,7 +96,7 @@
         {
             var input = dataFile;
 
-            if (this.supportRetina)
+            if (supportRetina)
             {
                 var dataFile2x = Path.Combine (Path.GetDirectoryName (dataFile),
                     Path.GetFileNameWithoutExtension (dataFile)
@@ -108,7 +113,7 @@
 #elif NETFX_CORE
         private string[] ReadDataFile(string dataFile)
         {
-            var dataFileLines = this.ReadDataFileLines(dataFile);
+            var dataFileLines = ReadDataFileLines(dataFile);
 
             return dataFileLines.Result.ToArray();
         }
