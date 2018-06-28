@@ -49,7 +49,8 @@ namespace TexturePackerMonoGameDemoCommon
             spriteRender = new SpriteRender(spriteBatch);
 
             var spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
-            spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
+            spriteSheet = spriteSheetLoader.Load(GraphicsDevice.Viewport.Height > 768 ? "CapGuyDemo@2x.png"
+                                                                                      : "CapGuyDemo.png");
             backgroundSprite = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Background);
             centreScreen = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
 

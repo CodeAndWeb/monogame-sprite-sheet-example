@@ -17,18 +17,10 @@
         private readonly ContentManager contentManager;
         private readonly GraphicsDevice graphicsDevice;
 
-#if __IOS__
-        private readonly bool supportRetina;
-#endif
-
         public SpriteSheetLoader(ContentManager contentManager, GraphicsDevice graphicsDevice)
         {
             this.contentManager = contentManager;
             this.graphicsDevice = graphicsDevice;
-
-#if __IOS__
-            this.supportRetina = MonoTouch.UIKit.UIScreen.MainScreen.Scale == 2.0f;
-#endif
         }
 
         public SpriteSheet MultiLoad(string imageResourceFormat, int numSheets)
@@ -91,26 +83,7 @@
             return sheet;
         }
 
-#if __IOS__
-        private string[] ReadDataFile(string dataFile) 
-        {
-            var input = dataFile;
-
-            if (supportRetina)
-            {
-                var dataFile2x = Path.Combine (Path.GetDirectoryName (dataFile),
-                    Path.GetFileNameWithoutExtension (dataFile)
-                    + "@2x" + Path.GetExtension (dataFile));
-
-                if (File.Exists (dataFile2x))
-                {
-                    input = dataFile2x;
-                }
-            }
-
-            return File.ReadAllLines (input);
-        }
-#elif NETFX_CORE
+#if NETFX_CORE
         private string[] ReadDataFile(string dataFile)
         {
             var dataFileLines = ReadDataFileLines(dataFile);
