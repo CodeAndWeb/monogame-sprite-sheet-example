@@ -1,12 +1,10 @@
-﻿using TexturePackerLoader;
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using TexturePackerLoader;
 
-namespace TexturePackerMonoGameDemoCommon
+namespace TexturePacker_MonoGame_Demo
 {
-    using System;
-
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-
     public class AnimationManager
     {
         private readonly Animation[] animations;

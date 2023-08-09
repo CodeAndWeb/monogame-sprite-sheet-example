@@ -5,7 +5,7 @@
 # https://www.codeandweb.com/texturepacker/monogame
 #
 # Sprite sheet: CapGuyDemo@2x.png (2048 x 1932)
-# $TexturePacker:SmartUpdate:08e9e51b9c9d1ecfdce312b4ccaf09d5:ac7608d1f04ab193bff21724566c15eb:1a29484f10f40756034a0cb4556342aa$
+# $TexturePacker:SmartUpdate:e83a3847988829d9030aa268a298dc3e:ac7608d1f04ab193bff21724566c15eb:1a29484f10f40756034a0cb4556342aa$
 #
 
 Background;0;2;2;2044;1536;2044;1536;0.5;0.5

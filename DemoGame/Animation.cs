@@ -1,10 +1,9 @@
-﻿namespace TexturePackerMonoGameDemoCommon
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace TexturePacker_MonoGame_Demo
 {
-    using System;
-
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-
     public class Animation
     {
         public Animation(Vector2 characterVelocity, TimeSpan timePerFrame, SpriteEffects effect, string[] sprites)
