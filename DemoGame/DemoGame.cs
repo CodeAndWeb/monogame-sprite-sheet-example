@@ -64,7 +64,7 @@ namespace TexturePacker_MonoGame_Demo
         {
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin(transformMatrix: globalTransformation);
+            _spriteBatch.Begin(blendState: BlendState.NonPremultiplied, transformMatrix: globalTransformation);
 
             // Draw the background
             spriteRender.Draw(backgroundSprite, centreScreen);
