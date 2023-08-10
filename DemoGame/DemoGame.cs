@@ -10,8 +10,8 @@ namespace TexturePacker_MonoGame_Demo
     {
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(1f / 20f);
 
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
         private SpriteSheet spriteSheet;
         private SpriteRender spriteRender;
@@ -22,9 +22,9 @@ namespace TexturePacker_MonoGame_Demo
 
         public DemoGame()
         {
-            _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 768;
+            graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -36,9 +36,9 @@ namespace TexturePacker_MonoGame_Demo
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            spriteRender = new SpriteRender(_spriteBatch);
+            spriteRender = new SpriteRender(spriteBatch);
 
             var spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
             spriteSheet = spriteSheetLoader.Load(GraphicsDevice.Viewport.Width > 1024 ? "CapGuyDemo@2x.png"
@@ -64,7 +64,7 @@ namespace TexturePacker_MonoGame_Demo
         {
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin(blendState: BlendState.NonPremultiplied, transformMatrix: globalTransformation);
+            spriteBatch.Begin(blendState: BlendState.NonPremultiplied, transformMatrix: globalTransformation);
 
             // Draw the background
             spriteRender.Draw(backgroundSprite, centreScreen);
@@ -76,7 +76,7 @@ namespace TexturePacker_MonoGame_Demo
                 Color.White, 0, 1,
                 characterAnimationManager.CurrentSpriteEffects);
 
-            _spriteBatch.End();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
