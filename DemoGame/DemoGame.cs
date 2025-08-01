@@ -14,9 +14,7 @@ namespace TexturePacker_MonoGame_Demo
         private SpriteBatch spriteBatch;
 
         private SpriteSheet spriteSheet;
-        private SpriteRender spriteRender;
         private SpriteFrame backgroundSprite;
-        private Vector2 centreScreen;
         private AnimationManager characterAnimationManager;
         Matrix globalTransformation;
 
@@ -38,13 +36,11 @@ namespace TexturePacker_MonoGame_Demo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            spriteRender = new SpriteRender(spriteBatch);
 
             var spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
             spriteSheet = spriteSheetLoader.Load(GraphicsDevice.Viewport.Width > 1024 ? "CapGuyDemo@2x.png"
                                                                                       : "CapGuyDemo.png");
             backgroundSprite = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Background);
-            centreScreen = new Vector2(backgroundSprite.Size.X / 2, backgroundSprite.Size.Y / 2);
 
             globalTransformation = Matrix.CreateScale(GraphicsDevice.Viewport.Width / backgroundSprite.Size.X);
             InitialiseAnimationManager();
@@ -67,10 +63,10 @@ namespace TexturePacker_MonoGame_Demo
             spriteBatch.Begin(blendState: BlendState.NonPremultiplied, transformMatrix: globalTransformation);
 
             // Draw the background
-            spriteRender.Draw(backgroundSprite, centreScreen);
+            spriteBatch.Draw(backgroundSprite, Vector2.Zero);
 
             // Draw character on screen
-            spriteRender.Draw(
+            spriteBatch.Draw(
                 characterAnimationManager.CurrentSprite,
                 characterAnimationManager.CurrentPosition,
                 Color.White, 0, 1,
@@ -83,7 +79,7 @@ namespace TexturePacker_MonoGame_Demo
 
         private void InitialiseAnimationManager()
         {
-            var characterStartPosition = new Vector2(backgroundSprite.Size.X / 4, backgroundSprite.Size.Y * 0.7f);
+            var characterStartPosition = new Vector2(backgroundSprite.Size.X / 4, backgroundSprite.Size.Y * 0.8f);
             var characterVelocityPixelsPerSecond = backgroundSprite.Size.X / 9;
 
             var turnSprites = new[] {
