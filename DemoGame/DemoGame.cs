@@ -36,10 +36,9 @@ namespace TexturePacker_MonoGame_Demo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            var spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
-            spriteSheet = spriteSheetLoader.Load(GraphicsDevice.Viewport.Width > 1024 ? "CapGuyDemo@2x.png"
-                                                                                      : "CapGuyDemo.png");
+            var spriteSheetLoader = new SpriteSheetLoader(Content);
+            spriteSheet = spriteSheetLoader.Load(GraphicsDevice.Viewport.Width > 1024 ? "CapGuyDemo@2x"
+                                                                                      : "CapGuyDemo");
             backgroundSprite = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Background);
 
             globalTransformation = Matrix.CreateScale(GraphicsDevice.Viewport.Width / backgroundSprite.Size.X);
